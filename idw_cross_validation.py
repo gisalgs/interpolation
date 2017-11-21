@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 sys.path.append('../geom')
 from point import *
@@ -27,4 +28,4 @@ for i in range(N):
 for i in range(len(powers)):
     rmse = sqrt(sum([r[i]**2 for r in test_results])/
                 len(test_results))
-    print rmse, '[', powers[i], ']'
+    print(rmse, '[', powers[i], ']')
