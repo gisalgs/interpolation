@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 import sys
 sys.path.append('../geom')
@@ -32,5 +33,4 @@ for i in range(N):
     test_results.append(kresult[0]-Z[i][2])
     mask[i] = True
 
-print np.sqrt(sum([r**2 for r in test_results])/
-              len(test_results))
+print(np.sqrt(sum([r**2 for r in test_results])/len(test_results)))
