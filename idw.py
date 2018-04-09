@@ -5,7 +5,7 @@ def IDW(Z, b):
       Z: a list of lists where each element list contains 
          four values: X, Y, Value, and Distance to target
           point. Z can also be a NumPy 2-D array.
-      b: power of distance
+      b: power of distanc
     Output
       Estimated value at the target location.
     """
