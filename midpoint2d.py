@@ -1,23 +1,26 @@
 import random
 import math
-import numpy as np
 import sys
-import string
 
 def f(delta, x):
     return sum(x)/len(x)+delta*random.gauss(0,1)
 
 def midpoint2d(maxlevel, sigma, H, addition=False):
+    '''
+    maxlevel - size
+    sigma    - variation
+    H        - autocorrelation
+    '''
     N = int(math.pow(2, maxlevel))
-    X = [ [0]*(N+1) for x in range(N+1)]
+    X = [ [0]*(N+1) for x in range(N+1) ]
     delta = sigma
     X[0][0] = delta*random.gauss(0,1)
     X[0][N] = delta*random.gauss(0,1)
     X[N][0] = delta*random.gauss(0,1)
     X[N][N] = delta*random.gauss(0,1)
     D = N
-    d = N/2
-    for stage in range(1, maxlevel+1):
+    d = N//2
+    for _ in range(1, maxlevel+1):
         delta = delta*math.pow(0.5, 0.5*H)
         for x in range(d, N-d+1, D):
             for y in range(d, N-d+1, D):
@@ -44,12 +47,12 @@ def midpoint2d(maxlevel, sigma, H, addition=False):
         if addition is True:
             for x in range(0, N+1, D):
                 for y in range(0, N+1, D):
-                    X[x][y] += delta*randomgauss(0, 1)
+                    X[x][y] += delta*random.gauss(0, 1)
             for x in range(d, N-d+1, D):
                 for y in range(d, N-d+1, D):
                     X[x][y] += delta*random.gauss(0, 1)
-        D=D/2
-        d=d/2
+        D=D//2
+        d=d//2
     return X
 
 if __name__ == '__main__':
@@ -57,16 +60,18 @@ if __name__ == '__main__':
     Python midpoint2d.py
     Python midpoint2d.py maxlevel sigma H
     """
-    maxlevel = 6
-    sigma = 0.5
-    H = 0.1
+    
+    maxlevel = 6     # size
+    sigma    = 0.5   # variation
+    H        = 0.1   # autocorrelation
+
     if len(sys.argv) == 4:
-        maxlevel = string.atoi(sys.argv[1])
-        sigma = string.atof(sys.argv[2])
-        H = string.atof(sys.argv[3])
+        maxlevel = int(sys.argv[1])
+        sigma = float(sys.argv[2])
+        H = float(sys.argv[3])
     X = midpoint2d(maxlevel, sigma, H)
     for i in X:
         for j in i:
-            print j,
-        print
+            print(f'{j}', end=' ')
+        print()
     
