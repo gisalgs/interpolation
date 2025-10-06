@@ -1,5 +1,5 @@
 import numpy as np
-from semivariance import distance
+from .semivariance import distance
 
 def skriging(Z, mu, model):
     """
